@@ -1,0 +1,112 @@
+.hero {
+  margin-block: 0px;
+  /* border: 1px solid red; */
+}
+
+.container {
+  height: 80vh;
+  width: 100%;
+  /* border: 1px solid red; */
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.95),
+      rgba(255, 255, 255, 0.88)
+    ),
+    url("/hero-bg.jpg");
+  background-size: contain; /* Scale the image to cover the entire container */
+  background-position: right;
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+
+.content {
+  margin-left: 100px;
+  /* width: 60%; */
+}
+
+.content_top {
+  /* border: 1px solid black; */
+  height: 50%;
+  gap: 25px;
+  width: 60%;
+  justify-content: center;
+}
+
+.content_top h1 {
+  font-size: 5rem;
+  font-weight: 400;
+}
+
+.content_top p {
+  font-size: 1.5rem;
+}
+
+/* ============================================ bottom section ==================================================*/
+.content_bottom_wrapper {
+  width: 100%;
+  height: 50%;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.74) 50%,
+    #ffffff 100%
+  );
+}
+
+.content_bottom {
+  gap: 30px;
+  display: flex;
+  align-items: start;
+  flex-wrap: wrap;
+
+
+}
+
+.search_container {
+  position: relative;
+}
+
+.search_input {
+  width: 280px;
+  padding-inline: 30px 40px !important;
+}
+
+.icon_1,
+.icon_2,
+.icon_3 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.icon_1 {
+  left: 5px;
+  color: var(--primary-background);
+}
+
+.icon_2 {
+  right: 10px;
+  color: var(--primary-background);
+}
+
+.icon_3 {
+  color: var(--primary-background);
+  left: 5px;
+}
+
+.total_person {
+  position: relative;
+}
+
+.total_person select {
+  width: 70px;
+  padding-left: 28px;
+  padding-block: 8px;
+  /* padding: 8px 5px; */
+  height: 100%;
+  outline: none;
+}
+
+.total_person select:focus-within {
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 0 0 2px 1px rgb(184, 183, 183);
+}
