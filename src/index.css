@@ -19,6 +19,9 @@
 .flex {
   display: flex;
 }
+.flex-col {
+  flex-direction: column;
+}
 
 .justify-center {
   justify-content: center;
@@ -34,16 +37,31 @@
   /* border: 1px solid black; */
 }
 
+.h-full {
+  height: 100%;
+}
+
 .btn {
   border: none;
-  padding: 10px 30px;
-  border-radius: 5px;
+  padding: 10px 38px;
+  border-radius: 1px;
   cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  /* font-size: 20px; */
+}
 
+button:active {
+  transform: translate(2px, 2px);
+}
+
+.primary {
   background-color: var(--primary-background);
   color: var(--primary-foreground);
+}
 
-  /* font-size: 20px; */
+.secondary {
+  border: 1px solid var(--primary-background);
+  color: var(--primary-background);
 }
 
 .btn:hover {
@@ -53,4 +71,20 @@
 a {
   text-decoration: none;
   color: black;
+}
+
+input {
+  outline: none;
+  border: 1px solid rgb(137, 137, 137);
+  font-size: 1.5rem;
+  padding: 8px 10px;
+}
+
+input:focus-within {
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 0 0 2px 1px rgb(184, 183, 183);
+}
+
+.bg-primary {
+  color: var(--primary-background);
 }
