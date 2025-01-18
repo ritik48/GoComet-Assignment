@@ -1,0 +1,22 @@
+.nav_content {
+  justify-content: space-between;
+}
+
+.nav_items {
+  gap: 60px;
+  font-size: 1.5rem;
+}
+
+.nav_container {
+  padding-block: 10px;
+}
+
+.selected {
+  font-weight: bold;
+  color: black;
+}
+
+.nav_link:hover {
+  text-decoration: underline;
+  opacity: 0.75;
+}
