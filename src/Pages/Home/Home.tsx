@@ -1,3 +1,11 @@
+import { Explore } from "./components/Explore";
+import { Hero } from "./components/Hero";
+
 export function Home() {
-  return <div>Home</div>;
+  return (
+    <>
+      <Hero />
+      <Explore />
+    </>
+  );
 }
