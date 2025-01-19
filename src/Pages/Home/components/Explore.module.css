@@ -1,6 +1,22 @@
-
 .top h3 {
   font-size: 3rem;
   text-align: center;
   font-weight: 400;
+  margin-bottom: 20px;
 }
+
+.right {
+  flex: 1;
+  margin-inline: 80px;
+  gap: 20px;
+}
+
+.sort {
+  margin-left: auto;
+  padding: 6px 0;
+  min-width: min-content;
+  max-width: max-content;
+
+  outline: none;
+}
+
