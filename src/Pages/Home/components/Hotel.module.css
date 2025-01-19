@@ -6,6 +6,7 @@
 
 
 .top {
+  margin-top: 5px;
   gap: 5px;
 }
 
@@ -25,6 +26,9 @@
   font-size: 1.4rem;
   font-weight: 400;
   color: #000000bf;
+}
+.rating_container {
+  gap: 5px;
 }
 
 .hotel_rating {
@@ -47,4 +51,13 @@
 .price_container {
   margin-top: 5px;
   justify-content: space-between;
+}
+
+.view {
+  gap: 10px;
+  transition: all 150ms ease-in;
+}
+
+.view:hover {
+  gap: 12px;
 }
