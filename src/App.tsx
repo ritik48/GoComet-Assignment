@@ -10,7 +10,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route index path="/" element={<Home />} />
-        <Route index path="/hotels" element={<Hotel />} />
+        <Route path="/hotel/:hotelId" element={<Hotel />} />
       </Routes>
     </BrowserRouter>
   );

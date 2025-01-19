@@ -47,6 +47,7 @@
   border-radius: 1px;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
+  font-size: 1.4rem;
   /* font-size: 20px; */
 }
 
@@ -62,10 +63,14 @@ button:active {
 .secondary {
   border: 1px solid var(--primary-background);
   color: var(--primary-background);
+  background-color: white;
 }
 
-.btn:hover {
+.primary:hover {
   opacity: 0.85;
+}
+.secondary:hover {
+  background-color: rgb(235, 235, 235);
 }
 
 a {
