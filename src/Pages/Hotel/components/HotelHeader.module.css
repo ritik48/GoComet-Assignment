@@ -1,0 +1,28 @@
+.header {
+  /* border: 1px solid red; */
+}
+
+.header_content {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  color: white;
+}
+
+.details {
+  gap: 30px;
+}
+
+.name {
+  font-size: 5rem;
+  text-align: center;
+}
+
+.city,
+.rating_container {
+  font-size: 2rem;
+  gap: 5px;
+}
