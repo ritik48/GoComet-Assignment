@@ -256,25 +256,15 @@ const hotels = [
   },
 ];
 
-type HotelType = {
-  name: string;
-  city: string;
-  rooms: {
-    id: string;
-    name: string;
-    price: number
-  }
-  image_url: string;
-  id: string;
-  rating: string; // Assuming rating is stored as a string
-}
-
-export function Hotel({data}: {data: HotelType}) {
-  
-}
+import { Hotel } from "./Hotel";
+import style from "./HotelList.module.css";
 
 export function HotelList() {
-  return <div>
-    
-  </div>
+  return (
+    <div className={style.hotel_list}>
+      {hotels.map((h) => (
+        <Hotel key={h.id} data={h} />
+      ))}
+    </div>
+  );
 }
