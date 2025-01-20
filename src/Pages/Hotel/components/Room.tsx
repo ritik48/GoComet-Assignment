@@ -3,7 +3,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { MdPeopleAlt } from "react-icons/md";
 import { RoomType } from "./DisplayRooms";
 import { useState } from "react";
-import Modal from "../../../components/modal";
+import Modal from "../../../components/Modal";
 import { Booking } from "./Booking";
 
 export function Room({ data }: { data: RoomType }) {
