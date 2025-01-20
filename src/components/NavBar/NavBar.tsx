@@ -8,7 +8,7 @@ export default function NavBar() {
     <div className={`${styles.nav}`}>
       <div className={`container ${styles.nav_container}`}>
         <div className={`${styles.nav_content} flex items-center`}>
-          <img className="nav_brand" src={"/book-my-hotel-logo.svg"} />
+          <img className={styles.brand} src={"/book-my-hotel-logo.svg"} />
           <div className={`flex items-center ${styles.nav_items}`}>
             <Link
               to={"/"}
