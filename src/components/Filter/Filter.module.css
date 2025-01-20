@@ -49,6 +49,7 @@
 
 .selected_filter_container {
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .selected_filter {
