@@ -93,3 +93,19 @@ input:focus-within {
 .bg-primary {
   color: var(--primary-background);
 }
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Use rgba for semi-transparent black */
+  backdrop-filter: blur(10px); /* Adds a blur effect to the background */
+  -webkit-backdrop-filter: blur(10px); /* For Safari support */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+
+/* fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 */
