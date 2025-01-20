@@ -1,0 +1,135 @@
+.booking {
+  position: relative;
+  width: 50%;
+  height: 80%;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 15px 40px;
+
+  /* border: 1px solid red; */
+  border-radius: 6px;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  color: rgb(71, 71, 71);
+  cursor: pointer;
+
+  transition: all 120ms ease-in;
+}
+
+.close:hover {
+  transform: scale(1.2);
+}
+
+.header {
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.hotel {
+  font-size: 1.6rem;
+}
+
+.room {
+  font-size: 2.2rem;
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+}
+
+.left,
+.right {
+  width: 50%;
+  flex: 1;
+  /* border: 1px solid red; */
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 100%;
+}
+
+.facilities {
+  gap: 8px;
+  /* border: 1px solid red; */
+  margin-top: 30px;
+}
+
+.facility_item {
+  border: 1px solid var(--primary-background);
+  color: var(--primary-background);
+
+  font-size: 1.5rem;
+
+  padding: 2px 16px;
+
+  border-radius: 20px;
+}
+
+.booking_date_person {
+  gap: 20px;
+  margin-top: 50px;
+  /* border: 1px solid red; */
+}
+
+.booking_date_left,
+.booking_date_right {
+  font-size: 1.6rem;
+  gap: 4px;
+}
+
+.booking_date_right {
+  font-weight: 500;
+  color: var(--primary-background);
+}
+
+.left_icon {
+  color: gray;
+}
+
+.booking_date_left_item {
+  gap: 6px;
+}
+
+.date {
+  display: flex;
+
+  gap: 10px;
+}
+
+.date input:focus-within {
+  box-shadow: none;
+  border: 1px solid rgb(91, 91, 91);
+}
+
+.date_label {
+  font-size: 1.3rem;
+}
+
+.date_icon {
+  color: var(--primary-background);
+  align-self: center;
+}
+
+.date_content {
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+}
