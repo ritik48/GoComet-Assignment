@@ -1,0 +1,104 @@
+.input_group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin-bottom: 20px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+
+  /* border: 1px solid red; */
+  flex: 1;
+}
+
+.remove {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.remove_icon {
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+  color: red;
+}
+
+.remove_icon:hover {
+  transform: scale(1.2);
+}
+
+.remove div {
+  font-size: 1.3rem;
+}
+
+.bottom {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.gender_buttons {
+  border: 1px solid gray;
+  border-radius: 4px;
+  margin-left: auto;
+}
+
+.gender_button {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+.gender_button:nth-of-type(2) {
+  border-left: 1px solid gray;
+}
+
+.gender_button:hover {
+  background-color: rgb(222, 222, 222);
+}
+
+.gender_button:active {
+  transform: none;
+}
+
+.active {
+  background-color: gray;
+  color: white;
+}
+
+.active:hover {
+  background-color: gray;
+}
+
+.people_container {
+  height: 270px;
+  overflow-y: auto;
+}
+
+.input_age {
+  width: 100px;
+}
+
+.add_button {
+  font-size: 1.5rem;
+  margin-left: auto;
+  margin-block: 20px;
+  border: none;
+  background: transparent;
+  color: var(--primary-background);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.add_button:hover {
+  color: rgb(97, 97, 166);
+}
+
+
+input:focus-within {
+  box-shadow: none;
+  border: 1px solid rgb(91, 91, 91);
+}
