@@ -1,3 +1,5 @@
+import React from "react";
+import { FilterItem, FilterType, useFilters } from "../../hooks/useFilters";
 import style from "./Filter.module.css";
 import { IoCloseSharp } from "react-icons/io5";
 
@@ -24,22 +26,47 @@ const cityFilter = [
 ];
 
 export function Filter() {
+  const { filters, addFilter, removeFilter, clearFilters, selectedFilters } =
+    useFilters();
+
+  // to remove filters based on input is checked or not
+  const handleAddFilter = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    filterType: keyof FilterType,
+    item: FilterItem
+  ) => {
+    if (e.target.checked) {
+      addFilter(filterType, item);
+    } else {
+      removeFilter(filterType, item.value);
+    }
+  };
+
   return (
     <div className={style.filter}>
       <div className={`${style.top} flex flex-col`}>
         <div className={`flex items-center ${style.top_first}`}>
           <div>Filters</div>
-          <button>Clear All</button>
+          <button onClick={clearFilters}>Clear All</button>
         </div>
         <div className={`flex ${style.selected_filter_container}`}>
-          <div className={`${style.selected_filter} flex items-center`}>
-            <div>Mumbai</div>
-            <IoCloseSharp size={15} className={style.selected_filter_close} />
-          </div>
-          <div className={`${style.selected_filter} flex items-center`}>
-            <div>Up to Rs. 1000</div>
-            <IoCloseSharp size={15} className={style.selected_filter_close} />
-          </div>
+          {/* {Object.entries(filters).map((filter) => filter.map())} */}
+
+          {selectedFilters().map((selected) => (
+            <div className={`${style.selected_filter} flex items-center`}>
+              <div>{selected.label}</div>
+              <IoCloseSharp
+                size={15}
+                className={style.selected_filter_close}
+                onClick={() =>
+                  removeFilter(
+                    selected.type as keyof FilterType,
+                    selected.value
+                  )
+                }
+              />
+            </div>
+          ))}
         </div>
       </div>
       <div className={`${style.filter_box} flex flex-col`}>
@@ -50,7 +77,20 @@ export function Filter() {
               key={price.value}
               className={`flex items-center ${style.filter_item}`}
             >
-              <input type="checkbox" value={price.value} id={price.value} />
+              <input
+                type="checkbox"
+                checked={filters.priceRange.some(
+                  (item) => item.value === price.value
+                )}
+                onChange={(e) =>
+                  handleAddFilter(e, "priceRange", {
+                    label: price.label,
+                    value: price.value,
+                  })
+                }
+                value={price.value}
+                id={price.value}
+              />
               <label htmlFor={price.value}>{price.label}</label>
             </div>
           ))}
@@ -65,7 +105,20 @@ export function Filter() {
               key={rating.value}
               className={`flex items-center ${style.filter_item}`}
             >
-              <input type="checkbox" value={rating.value} id={rating.value} />
+              <input
+                type="checkbox"
+                checked={filters.rating.some(
+                  (item) => item.value === rating.value
+                )}
+                onChange={(e) =>
+                  handleAddFilter(e, "rating", {
+                    label: rating.label,
+                    value: rating.value,
+                  })
+                }
+                value={rating.value}
+                id={rating.value}
+              />
               <label htmlFor={rating.value}>{rating.label}</label>
             </div>
           ))}
@@ -80,7 +133,18 @@ export function Filter() {
               key={city.value}
               className={`flex items-center ${style.filter_item}`}
             >
-              <input type="checkbox" value={city.value} id={city.value} />
+              <input
+                type="checkbox"
+                checked={filters.city.some((item) => item.value === city.value)}
+                onChange={(e) =>
+                  handleAddFilter(e, "city", {
+                    label: city.label,
+                    value: city.value,
+                  })
+                }
+                value={city.value}
+                id={city.value}
+              />
               <label htmlFor={city.value}>{city.label}</label>
             </div>
           ))}
