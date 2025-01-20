@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { HotelHeader } from "./components/HotelHeader";
-import { HotelRooms } from "./components/HotelRooms";
+import { HotelRooms } from "./components/DisplayRooms";
 import { HotelDescription } from "./components/HotelDescription";
 
 export function Hotel() {
