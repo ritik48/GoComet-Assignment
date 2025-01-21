@@ -16,7 +16,18 @@
   margin-block: 50px;
 }
 
-.info {
+.info,
+.error {
   text-align: center;
   font-size: 1.6rem;
+}
+
+.error {
+  color: red;
+}
+
+.results {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-block: 10px;
 }
