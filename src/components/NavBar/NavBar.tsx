@@ -8,7 +8,9 @@ export default function NavBar() {
     <div className={`${styles.nav}`}>
       <div className={`container ${styles.nav_container}`}>
         <div className={`${styles.nav_content} flex items-center`}>
-          <img className={styles.brand} src={"/book-my-hotel-logo.svg"} />
+          <Link to={"/"}>
+            <img className={styles.brand} src={"/book-my-hotel-logo.svg"} />
+          </Link>
           <div className={`flex items-center ${styles.nav_items}`}>
             <Link
               to={"/"}
@@ -18,15 +20,6 @@ export default function NavBar() {
             >
               Home
             </Link>
-            <Link
-              to={"/hotels"}
-              className={`${path === "/hotels" && styles.selected} ${
-                styles.nav_link
-              }`}
-            >
-              Hotels
-            </Link>
-            {/* <div className={`${path === "/" && styles.selected}`}>Places</div> */}
           </div>
           <button className="btn">Sign In</button>
         </div>
