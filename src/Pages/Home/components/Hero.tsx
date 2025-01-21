@@ -99,20 +99,22 @@ export function Hero() {
                   />
                   <FaRegPaperPlane className={style.icon_2} size={15} />
                 </div>
-                <div className={style.search_result}>
-                  {searchResults.map((s) => (
-                    <div
-                      key={s.id}
-                      onClick={() => {
-                        setSearch(`${s.name}, ${s.city}`);
-                        setSelectedHotel(s.id);
-                        setSearchResults([]);
-                      }}
-                    >
-                      {s.name}, {s.city}
-                    </div>
-                  ))}
-                </div>
+                {searchResults.length > 0 && (
+                  <div className={style.search_result}>
+                    {searchResults.map((s) => (
+                      <div
+                        key={s.id}
+                        onClick={() => {
+                          setSearch(`${s.name}, ${s.city}`);
+                          setSelectedHotel(s.id);
+                          setSearchResults([]);
+                        }}
+                      >
+                        {s.name}, {s.city}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* Date Inputs */}
