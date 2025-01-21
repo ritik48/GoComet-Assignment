@@ -4,6 +4,12 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaRegPaperPlane } from "react-icons/fa";
 import { MdPeopleAlt } from "react-icons/md";
 import { useBooking } from "../../../hooks/useBooking";
+import { useEffect, useState } from "react";
+import { useHotels } from "../../../hooks/useHotels";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
+type HotelSearch = { id: string; city: string; name: string };
 
 export function Hero() {
   const {
@@ -14,6 +20,53 @@ export function Hero() {
     setTotalPeople,
     totalPeople,
   } = useBooking();
+
+  const [search, setSearch] = useState("");
+  const [searchResults, setSearchResults] = useState<HotelSearch[]>([]);
+  const [hotels, setHotels] = useState<HotelSearch[]>([]);
+
+  const [selectedHotel, setSelectedHotel] = useState("");
+  const { fetchHotelForSearch } = useHotels();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    (async () => {
+      const result = await fetchHotelForSearch();
+      setHotels(result);
+    })();
+  }, []);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inp = e.target.value;
+    setSearch(inp);
+    if (!inp) {
+      setSearchResults([]);
+      return;
+    }
+
+    const searchResults = hotels.filter(
+      (h) =>
+        h.name.toLowerCase().includes(inp.toLowerCase()) ||
+        h.city.toLowerCase().includes(inp.toLowerCase())
+    );
+
+    setSearchResults(searchResults);
+  };
+
+  const handleSearchButton = () => {
+    if (!selectedHotel) {
+      toast.error("Please select a valid hotel first");
+      return;
+    }
+
+    if (!checkInDate || !checkOutDate) {
+      toast.error("Please select check-in and check-out date");
+      return;
+    }
+
+    navigate(`/hotel/${selectedHotel}`);
+  };
 
   return (
     <div className={style.hero}>
@@ -31,13 +84,31 @@ export function Hero() {
           <div className={`${style.content_bottom_wrapper}`}>
             <div className={`${style.content_bottom}`}>
               {/* Search Bar */}
-              <div className={style.search_container}>
-                <FaLocationDot className={style.icon_1} size={15} />
-                <input
-                  className={`${style.search_input}`}
-                  placeholder="Type city, place or hotel name"
-                />
-                <FaRegPaperPlane className={style.icon_2} size={15} />
+              <div className={style.search_outer}>
+                <div className={style.search_container}>
+                  <FaLocationDot className={style.icon_1} size={15} />
+                  <input
+                    className={`${style.search_input}`}
+                    value={search}
+                    onChange={handleSearch}
+                    placeholder="Type city, place or hotel name"
+                  />
+                  <FaRegPaperPlane className={style.icon_2} size={15} />
+                </div>
+                <div className={style.search_result}>
+                  {searchResults.map((s) => (
+                    <div
+                      key={s.id}
+                      onClick={() => {
+                        setSearch(`${s.name}, ${s.city}`);
+                        setSelectedHotel(s.id);
+                        setSearchResults([]);
+                      }}
+                    >
+                      {s.name}, {s.city}
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* Date Inputs */}
@@ -75,7 +146,9 @@ export function Hero() {
               </div>
 
               {/* Search Button */}
-              <button className="btn primary">Search</button>
+              <button className="btn primary" onClick={handleSearchButton}>
+                Search
+              </button>
             </div>
           </div>
         </div>
