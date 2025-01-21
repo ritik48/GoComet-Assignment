@@ -3,6 +3,7 @@ import { useHotels } from "../../../hooks/useHotels";
 import { Hotel } from "./Hotel";
 import style from "./HotelList.module.css";
 import { usePagination } from "../../../hooks/usePagination";
+import { applyFilter } from "../../../lib";
 
 export function HotelList() {
   const { filters } = useFilters();
@@ -10,20 +11,24 @@ export function HotelList() {
   const itemsPerPage = 3;
   const { hotels, loading, error } = useHotels();
 
+  const filteredHotel = applyFilter(hotels, filters);
+
   const { currentPage, currentHotels, setCurrentPage, totalPages } =
-    usePagination(hotels, itemsPerPage);
+    usePagination(filteredHotel, itemsPerPage);
 
   return (
     <div>
       <div className={style.hotel_list_container}>
         {loading ? (
           <div className={style.loading}>Loading...</div>
-        ) : (
+        ) : currentHotels.length > 0 ? (
           <div className={style.hotel_list}>
             {currentHotels.map((h) => (
               <Hotel key={h.id} data={h} />
             ))}
           </div>
+        ) : (
+          <div className={style.info}>No hotels found.</div>
         )}
       </div>
       <div>
