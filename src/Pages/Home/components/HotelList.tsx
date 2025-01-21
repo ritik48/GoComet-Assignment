@@ -1,23 +1,36 @@
 import { useFilters } from "../../../hooks/useFilters";
 import { useHotels } from "../../../hooks/useHotels";
-import { Hotel } from "./Hotel";
+import { Hotel, HotelType } from "./Hotel";
 import style from "./HotelList.module.css";
 import { usePagination } from "../../../hooks/usePagination";
 import { applyFilter } from "../../../lib";
+import { useEffect, useState } from "react";
 
 export function HotelList() {
+  const [hotels, setHotels] = useState<HotelType[]>([]);
   const { filters } = useFilters();
 
   const itemsPerPage = 3;
-  const { hotels, loading, error } = useHotels();
-
+  const { fetchHotels, loading, error } = useHotels();
   const filteredHotel = applyFilter(hotels, filters);
 
   const { currentPage, currentHotels, setCurrentPage, totalPages } =
     usePagination(filteredHotel, itemsPerPage);
 
+  useEffect(() => {
+    (async () => {
+      const results = await fetchHotels();
+      setHotels(results);
+    })();
+  }, []);
+
   return (
     <div>
+      {!loading && !error && (
+        <div className={style.results}>
+          Total Results: {filteredHotel.length}
+        </div>
+      )}
       <div className={style.hotel_list_container}>
         {loading ? (
           <div className={style.loading}>Loading...</div>
@@ -30,6 +43,8 @@ export function HotelList() {
         ) : (
           <div className={style.info}>No hotels found.</div>
         )}
+
+        {error && <div className={style.error}>{error}</div>}
       </div>
       <div>
         <button
