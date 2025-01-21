@@ -3,18 +3,16 @@ import { FaStar } from "react-icons/fa";
 
 import style from "./Hotel.module.css";
 import { Link } from "react-router-dom";
+import { RoomType } from "../../Hotel/components/DisplayRooms";
 
 export type HotelType = {
   name: string;
   city: string;
-  rooms: {
-    id: string;
-    name: string;
-    price: number;
-  }[];
+  rooms: RoomType[];
   image_url: string;
   id: string;
   rating: string; // Assuming rating is stored as a string
+  description: string;
 };
 
 export function Hotel({ data }: { data: HotelType }) {
