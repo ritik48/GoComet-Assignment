@@ -1,7 +1,8 @@
 import React from "react";
-import { FilterItem, FilterType, useFilters } from "../../hooks/useFilters";
+import { FilterItem, FilterType } from "../../context/filter";
 import style from "./Filter.module.css";
 import { IoCloseSharp } from "react-icons/io5";
+import { useFilters } from "../../hooks/useFilters";
 
 const priceFilter = [
   { label: "Up to Rs. 1000", value: "0-1000" },
@@ -53,7 +54,10 @@ export function Filter() {
           {/* {Object.entries(filters).map((filter) => filter.map())} */}
 
           {selectedFilters().map((selected) => (
-            <div className={`${style.selected_filter} flex items-center`}>
+            <div
+              className={`${style.selected_filter} flex items-center`}
+              key={selected.label}
+            >
               <div>{selected.label}</div>
               <IoCloseSharp
                 size={15}
