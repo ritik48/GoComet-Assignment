@@ -80,11 +80,17 @@
 .search_outer {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .search_result {
+  position: absolute;
   height: 150px;
   overflow-y: auto;
+  top: 40px;
+  left: 0px;
+  z-index: 10;
+  width: 100%;
 }
 .search_result div {
   font-size: 1.3rem;
@@ -132,4 +138,27 @@
 .total_person select:focus-within {
   border: 1px solid rgb(255, 255, 255);
   box-shadow: 0 0 2px 1px rgb(184, 183, 183);
+}
+
+@media screen and (max-width: 520px) {
+  .container {
+    min-height: 70vh;;
+  }
+  .content {
+    margin-left: 0;
+    padding: 80px 20px 40px 20px;
+  }
+  .content_top {
+    width: 90%;
+    margin-inline: auto;
+  }
+  .content_top h1 {
+    font-size: 3rem;
+  }
+
+  .content_bottom {
+    width: 90%;
+    margin-inline: auto;
+    margin-block: 40px;
+  }
 }
