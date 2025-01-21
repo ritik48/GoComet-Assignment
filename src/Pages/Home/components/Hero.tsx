@@ -26,7 +26,7 @@ export function Hero() {
   const [hotels, setHotels] = useState<HotelSearch[]>([]);
 
   const [selectedHotel, setSelectedHotel] = useState("");
-  const { fetchHotelForSearch } = useHotels();
+  const { fetchHotelForSearch, loading, error } = useHotels();
 
   const navigate = useNavigate();
 
@@ -55,6 +55,10 @@ export function Hero() {
   };
 
   const handleSearchButton = () => {
+    if (error) {
+      toast.error("Something went wrong. Try reloading the page");
+      return;
+    }
     if (!selectedHotel) {
       toast.error("Please select a valid hotel first");
       return;
@@ -146,7 +150,11 @@ export function Hero() {
               </div>
 
               {/* Search Button */}
-              <button className="btn primary" onClick={handleSearchButton}>
+              <button
+                className="btn primary"
+                onClick={handleSearchButton}
+                disabled={loading}
+              >
                 Search
               </button>
             </div>
