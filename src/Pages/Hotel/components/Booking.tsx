@@ -2,12 +2,12 @@ import { MdPeopleAlt } from "react-icons/md";
 import { HiOutlineArrowLeftStartOnRectangle } from "react-icons/hi2";
 import { HiOutlineArrowRightEndOnRectangle } from "react-icons/hi2";
 import { HiOutlineArrowSmallRight } from "react-icons/hi2";
-import { FaRegCalendar } from "react-icons/fa6";
 
 import style from "./Booking.module.css";
 import { RoomType } from "./DisplayRooms";
 import { AddPeopleForm } from "../../../components/AddPeopleForm";
 import { RxCross1 } from "react-icons/rx";
+import { useBooking } from "../../../hooks/useBooking";
 
 export function Booking({
   room,
@@ -16,6 +16,13 @@ export function Booking({
   room: RoomType;
   onClose: () => void;
 }) {
+  const {
+    checkInDate,
+    setCheckInDate,
+    setCheckOutDate,
+    totalPeople,
+    checkOutDate,
+  } = useBooking();
   return (
     <div className={style.booking}>
       <div className={`flex items-center ${style.header}`}>
@@ -59,9 +66,11 @@ export function Booking({
               </div>
             </div>
             <div className={`${style.booking_date_right} flex flex-col`}>
-              <div className={style.booking_date_right_item}>2</div>
-              <div className={style.booking_date_right_item}>14/02/2025</div>
-              <div className={style.booking_date_right_item}>16/02/2025</div>
+              <div className={style.booking_date_right_item}>{totalPeople}</div>
+              <div className={style.booking_date_right_item}>{checkInDate}</div>
+              <div className={style.booking_date_right_item}>
+                {checkOutDate}
+              </div>
             </div>
           </div>
         </div>
@@ -70,11 +79,19 @@ export function Booking({
             <div className={`${style.date_content} flex`}>
               <div>
                 <div className={style.date_label}>Check-in</div>
-                <input type="date" />
+                <input
+                  type="date"
+                  value={checkInDate || ""}
+                  onChange={(e) => setCheckInDate(e.target.value)}
+                />
               </div>
               <div>
                 <div className={style.date_label}>Check-out</div>
-                <input type="date" />
+                <input
+                  type="date"
+                  value={checkOutDate || ""}
+                  onChange={(e) => setCheckOutDate(e.target.value)}
+                />
               </div>
             </div>
           </div>
