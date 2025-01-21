@@ -1,7 +1,17 @@
 .hotel_list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 330px));
   gap: 20px;
 
   margin-bottom: 20px;
+}
+
+.hotel_list_container {
+  min-height: 400px;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-block: 50px;
 }
