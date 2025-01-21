@@ -1,4 +1,4 @@
-import { FilterType } from "./context/filter";
+import { FilterType, SortType } from "./context/filter";
 import { HotelType } from "./Pages/Home/components/Hotel";
 
 export function applyFilter(hotels: HotelType[], filters: FilterType) {
@@ -41,5 +41,23 @@ export function applyFilter(hotels: HotelType[], filters: FilterType) {
     }
 
     return true;
+  });
+}
+
+export function applySort(hotels: HotelType[], sortType: SortType) {
+  return [...hotels].sort((a, b) => {
+    switch (sortType) {
+      case "a-z":
+        return a.name.localeCompare(b.name); // Ascending alphabetical
+      case "z-a":
+        return b.name.localeCompare(a.name); // Descending alphabetical
+      case "h-l":
+        return parseFloat(b.rating) - parseFloat(a.rating); // High to Low rating
+      case "l-h":
+        return parseFloat(a.rating) - parseFloat(b.rating); // Low to High rating
+      case "none":
+      default:
+        return 0; // No sorting
+    }
   });
 }

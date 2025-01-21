@@ -3,19 +3,21 @@ import { useHotels } from "../../../hooks/useHotels";
 import { Hotel, HotelType } from "./Hotel";
 import style from "./HotelList.module.css";
 import { usePagination } from "../../../hooks/usePagination";
-import { applyFilter } from "../../../lib";
+import { applyFilter, applySort } from "../../../lib";
 import { useEffect, useState } from "react";
 
 export function HotelList() {
   const [hotels, setHotels] = useState<HotelType[]>([]);
-  const { filters } = useFilters();
+  const { filters, sortBy } = useFilters();
 
   const itemsPerPage = 3;
   const { fetchHotels, loading, error } = useHotels();
   const filteredHotel = applyFilter(hotels, filters);
 
+  const sortedHotels = applySort(filteredHotel, sortBy);
+
   const { currentPage, currentHotels, setCurrentPage, totalPages } =
-    usePagination(filteredHotel, itemsPerPage);
+    usePagination(sortedHotels, itemsPerPage);
 
   useEffect(() => {
     (async () => {

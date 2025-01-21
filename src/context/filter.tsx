@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, SetStateAction, useState } from "react";
 
 export type FilterItem = {
   label: string;
@@ -17,12 +17,16 @@ const initialFilters: FilterType = {
   city: [],
 };
 
+export type SortType = "a-z" | "z-a" | "h-l" | "l-h" | "none";
+
 interface FilterContextType {
   filters: FilterType;
   addFilter: (filterType: keyof FilterType, filterItem: FilterItem) => void;
   removeFilter: (filterType: keyof FilterType, value: string) => void;
   clearFilters: () => void;
   selectedFilters: () => { type: string; label: string; value: string }[];
+  sortBy: SortType;
+  setSortBy: React.Dispatch<SetStateAction<SortType>>;
 }
 
 export const FilterContext = createContext<FilterContextType | undefined>(
@@ -31,6 +35,7 @@ export const FilterContext = createContext<FilterContextType | undefined>(
 
 export const FilterProvider = ({ children }: { children: React.ReactNode }) => {
   const [filters, setFilters] = useState<FilterType>(initialFilters);
+  const [sortBy, setSortBy] = useState<SortType>("none");
 
   const addFilter = (filterType: keyof FilterType, filterItem: FilterItem) => {
     setFilters((prev) => ({
@@ -67,6 +72,8 @@ export const FilterProvider = ({ children }: { children: React.ReactNode }) => {
         removeFilter,
         clearFilters,
         selectedFilters,
+        sortBy,
+        setSortBy,
       }}
     >
       {children}
