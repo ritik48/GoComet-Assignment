@@ -4,10 +4,10 @@ import style from "./Filter.module.css";
 import { IoCloseSharp } from "react-icons/io5";
 
 const priceFilter = [
-  { label: "Up to Rs. 1000", value: "upto-1000" },
+  { label: "Up to Rs. 1000", value: "0-1000" },
   { label: "Rs. 1001 to Rs. 2000", value: "1001-2000" },
   { label: "Rs. 2001 to Rs. 5000", value: "2001-5000" },
-  { label: "Above Rs. 5000", value: "above-5000" },
+  { label: "Above Rs. 5000", value: "5001-1000000000" },
 ];
 
 const ratingFilter = [
