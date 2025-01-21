@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { HotelType } from "../Pages/Home/components/Hotel";
+import { useState } from "react";
 
 export function useHotels() {
   const [loading, setLoading] = useState(true);
@@ -14,7 +13,6 @@ export function useHotels() {
       );
 
       const data = await response.json();
-      console.log(data);
 
       return data.hotels || [];
     } catch (error) {
@@ -33,7 +31,7 @@ export function useHotels() {
       );
 
       const data = await response.json();
-      if (!data.succcess) {
+      if (!data.success) {
         setError(data.message || "Cannot get the hotel");
         return;
       }
