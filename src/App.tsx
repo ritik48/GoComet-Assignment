@@ -3,6 +3,7 @@ import { Home } from "./Pages/Home/Home";
 import { Hotel } from "./Pages/Hotel/Hotel";
 import NavBar from "./components/NavBar/NavBar";
 import "./index.css";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route index path="/" element={<Home />} />
         <Route path="/hotel/:hotelId" element={<Hotel />} />
       </Routes>
+      <Toaster />
     </BrowserRouter>
   );
 }
