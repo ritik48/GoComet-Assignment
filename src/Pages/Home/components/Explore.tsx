@@ -6,7 +6,6 @@ import { HotelList } from "./HotelList";
 
 export function Explore() {
   const { sortBy, setSortBy } = useFilters();
-  console.log({ sortBy });
   return (
     <div className={style.explore}>
       <div className={`${style.top}`}>
