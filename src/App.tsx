@@ -13,7 +13,14 @@ function App() {
         <Route index path="/" element={<Home />} />
         <Route path="/hotel/:hotelId" element={<Hotel />} />
       </Routes>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          className: "",
+          style: {
+            fontSize: "15px",
+          },
+        }}
+      />
     </BrowserRouter>
   );
 }
