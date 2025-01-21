@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { HotelType } from "../Pages/Home/components/Hotel";
 
 export function useHotels() {
-  const [hotels, setHotels] = useState<HotelType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -10,7 +9,6 @@ export function useHotels() {
     try {
       setError("");
       setLoading(true);
-      await new Promise((r) => setTimeout(r, 2000));
       const response = await fetch(
         `https://www.gocomet.com/api/assignment/hotels?size=${30}&page=${1}`
       );
@@ -18,18 +16,34 @@ export function useHotels() {
       const data = await response.json();
       console.log(data);
 
-      setHotels(data.hotels || []);
+      return data.hotels || [];
     } catch (error) {
       setError("Could not fetch the hotels");
-      console.log(error);
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    fetchHotels();
-  }, []);
+  const fetchHotelById = async (id: string) => {
+    try {
+      setError("");
+      setLoading(true);
+      const response = await fetch(
+        `https://www.gocomet.com/api/assignment/hotels/${id}`
+      );
 
-  return { loading, hotels, error };
+      const data = await response.json();
+      if (!data.succcess) {
+        setError(data.message || "Cannot get the hotel");
+        return;
+      }
+      return data.hotel;
+    } catch (error) {
+      setError("Could not fetch the hotels");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { loading, error, fetchHotels, fetchHotelById };
 }
