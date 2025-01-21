@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 export type FilterItem = {
   label: string;
@@ -17,7 +17,17 @@ const initialFilters: FilterType = {
   city: [],
 };
 
-export function useFilters() {
+interface FilterContextType {
+  filters: FilterType;
+  addFilter: (filterType: keyof FilterType, filterItem: FilterItem) => void;
+  removeFilter: (filterType: keyof FilterType, value: string) => void;
+  clearFilters: () => void;
+  selectedFilters: () => { type: string; label: string; value: string }[];
+}
+
+const FilterContext = createContext<FilterContextType | undefined>(undefined);
+
+export const FilterProvider = ({ children }: { children: React.ReactNode }) => {
   const [filters, setFilters] = useState<FilterType>(initialFilters);
 
   const addFilter = (filterType: keyof FilterType, filterItem: FilterItem) => {
@@ -34,7 +44,6 @@ export function useFilters() {
     }));
   };
 
-  // to get list of all filters that user has selected
   const selectedFilters = () => {
     return Object.entries(filters).flatMap(([type, items]) =>
       items.map((item) => ({
@@ -47,5 +56,25 @@ export function useFilters() {
 
   const clearFilters = () => setFilters(initialFilters);
 
-  return { filters, addFilter, removeFilter, clearFilters, selectedFilters };
-}
+  return (
+    <FilterContext.Provider
+      value={{
+        filters,
+        addFilter,
+        removeFilter,
+        clearFilters,
+        selectedFilters,
+      }}
+    >
+      {children}
+    </FilterContext.Provider>
+  );
+};
+
+export const useFilters = () => {
+  const context = useContext(FilterContext);
+  if (!context) {
+    throw new Error("useFilters must be used within a FilterProvider");
+  }
+  return context;
+};
