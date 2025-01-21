@@ -15,7 +15,7 @@ export function HotelRooms({ rooms }: { rooms: RoomType[] }) {
     <div>
       <div className={style.room_display}>
         {rooms.map((room) => (
-          <Room data={room} />
+          <Room data={room} key={room.id} />
         ))}
       </div>
     </div>
