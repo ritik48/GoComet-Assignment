@@ -97,7 +97,12 @@ input:focus-within {
 .modal {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Use rgba for semi-transparent black */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Use rgba for semi-transparent black */
   backdrop-filter: blur(10px); /* Adds a blur effect to the background */
   -webkit-backdrop-filter: blur(10px); /* For Safari support */
 
@@ -107,5 +112,19 @@ input:focus-within {
   z-index: 10;
 }
 
+.loading {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-block: 50px;
+}
 
-/* fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 */
+.info,
+.error {
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.error {
+  margin-block: 50px;
+  color: red;
+}
