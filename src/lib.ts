@@ -1,4 +1,4 @@
-import { FilterType } from "./hooks/useFilters";
+import { FilterType } from "./context/filter";
 import { HotelType } from "./Pages/Home/components/Hotel";
 
 export function applyFilter(hotels: HotelType[], filters: FilterType) {
