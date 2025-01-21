@@ -4,7 +4,7 @@ import { FaStar } from "react-icons/fa";
 import style from "./Hotel.module.css";
 import { Link } from "react-router-dom";
 
-type HotelType = {
+export type HotelType = {
   name: string;
   city: string;
   rooms: {
