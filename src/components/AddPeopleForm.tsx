@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./AddPeopleform.module.css";
 import { RxCross1 } from "react-icons/rx";
 import { useBooking } from "../hooks/useBooking";
+import toast from "react-hot-toast";
 
 type InputGroup = {
   id: number;
@@ -11,7 +12,13 @@ type InputGroup = {
 };
 
 export function AddPeopleForm() {
-  const { totalPeople, setTotalPeople } = useBooking(); // Access `setTotalPeople` from the context
+  const {
+    totalPeople,
+    setTotalPeople,
+    checkInDate,
+    checkOutDate,
+    resetBooking,
+  } = useBooking(); // Access `setTotalPeople` from the context
   const [inputGroups, setInputGroups] = useState<InputGroup[]>([]);
 
   useEffect(() => {
@@ -41,6 +48,7 @@ export function AddPeopleForm() {
   };
 
   const handleRemoveGroup = (id: number) => {
+    if (totalPeople === 1) return;
     setInputGroups((prev) => prev.filter((group) => group.id !== id));
     setTotalPeople((prev) => Math.max(prev - 1, 0)); // Decrement totalPeople but not below 0
   };
@@ -54,8 +62,28 @@ export function AddPeopleForm() {
   };
 
   function bookHotel() {
-    console.log("Booked");
-    console.log({ inputGroups });
+    if (!checkInDate || !checkOutDate) {
+      toast.error("Please fill the check-in and checkout-out date.");
+      return;
+    }
+
+    if (inputGroups.some((inp) => !inp.name || !inp.age || !inp.gender)) {
+      toast.error("Please fill all person details");
+      return;
+    }
+
+    // Everythong is right so submit
+
+    toast.success("Your booking is done.");
+    resetBooking();
+    setInputGroups([
+      {
+        id: Date.now(),
+        name: "",
+        age: "",
+        gender: "",
+      },
+    ]);
   }
 
   return (
