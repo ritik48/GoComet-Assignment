@@ -1,6 +1,5 @@
 import { Filter } from "../../../components/Filter/Filter";
-import { FilterProvider } from "../../../hooks/useFilters";
-// import { useHotels } from "../../../hooks/useHotels";
+import { FilterProvider } from "../../../context/filter";
 import style from "./Explore.module.css";
 import { HotelList } from "./HotelList";
 
@@ -13,11 +12,9 @@ export function Explore() {
           <div className={`${style.bottom} flex`}>
             <Filter />
             <div className={`${style.right} flex flex-col`}>
-              <select className={`${style.sort}`}>
+              <select className={`${style.sort}`} defaultValue={"none"}>
                 {/* <option value="none">Total People</option> */}
-                <option value="none" selected>
-                  Sort By
-                </option>
+                <option value="none">Sort By</option>
                 <option value="a-z">Name: A - Z</option>
                 <option value="z-a">Name: Z - A</option>
                 <option value="h-l">Price: Hight to Low</option>
