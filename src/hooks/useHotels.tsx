@@ -43,5 +43,22 @@ export function useHotels() {
     }
   };
 
-  return { loading, error, fetchHotels, fetchHotelById };
+  const fetchHotelForSearch = async () => {
+    try {
+      setError("");
+      setLoading(true);
+      const response = await fetch(
+        `https://www.gocomet.com/api/assignment/hotels-name`
+      );
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      setError("Could not fetch the hotels");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { loading, error, fetchHotels, fetchHotelById, fetchHotelForSearch };
 }
