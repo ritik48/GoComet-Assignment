@@ -5,9 +5,11 @@ import { RoomType } from "./DisplayRooms";
 import { useState } from "react";
 import Modal from "../../../components/Modal";
 import { Booking } from "./Booking";
+import { Facilitiy } from "./Facility";
 
 export function Room({ data }: { data: RoomType }) {
   const [openBookingModal, setOpenBookingModal] = useState(false);
+  const [openFacilityModal, setOpenFacilityModal] = useState(false);
 
   return (
     <>
@@ -25,7 +27,10 @@ export function Room({ data }: { data: RoomType }) {
             <span className={style.price}>{data.price}</span> / night
           </div>
           <div className={`flex items-center ${style.action_container}`}>
-            <button className={`btn secondary flex items-center`}>
+            <button
+              onClick={() => setOpenFacilityModal(true)}
+              className={`btn secondary flex items-center`}
+            >
               View Facilities
             </button>
             <button
@@ -39,6 +44,9 @@ export function Room({ data }: { data: RoomType }) {
       </div>
       <Modal isOpen={openBookingModal}>
         <Booking room={data} onClose={() => setOpenBookingModal(false)} />
+      </Modal>
+      <Modal isOpen={openFacilityModal}>
+        <Facilitiy room={data} onClose={() => setOpenFacilityModal(false)} />
       </Modal>
     </>
   );

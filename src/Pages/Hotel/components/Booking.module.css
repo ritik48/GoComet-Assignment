@@ -133,3 +133,24 @@ img {
   display: flex;
   flex-direction: column;
 }
+
+.facility_head {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.facility_list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.facility_list div {
+  font-size: 1.4rem;
+  border: 1px solid var(--primary-background);
+  color: var(--primary-background);
+  padding: 5px 15px;
+  border-radius: 5px;
+  width: fit-content;
+}
