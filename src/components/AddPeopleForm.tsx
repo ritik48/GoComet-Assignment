@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./AddPeopleform.module.css";
 import { RxCross1 } from "react-icons/rx";
+import { useBooking } from "../hooks/useBooking";
 
 type InputGroup = {
   id: number;
@@ -10,7 +11,23 @@ type InputGroup = {
 };
 
 export function AddPeopleForm() {
+  const { totalPeople, setTotalPeople } = useBooking(); // Access `setTotalPeople` from the context
   const [inputGroups, setInputGroups] = useState<InputGroup[]>([]);
+
+  useEffect(() => {
+    // Create initial input groups based on totalPeople
+    const initialGroups: InputGroup[] = Array.from(
+      { length: totalPeople },
+      () => ({
+        id: Date.now() + Math.random(), // Ensure unique IDs
+        name: "",
+        age: "",
+        gender: "",
+      })
+    );
+
+    setInputGroups(initialGroups);
+  }, []);
 
   const handleAddGroup = () => {
     const newGroup: InputGroup = {
@@ -20,10 +37,12 @@ export function AddPeopleForm() {
       gender: "",
     };
     setInputGroups((prev) => [...prev, newGroup]);
+    setTotalPeople((prev) => prev + 1); // Increment totalPeople
   };
 
   const handleRemoveGroup = (id: number) => {
     setInputGroups((prev) => prev.filter((group) => group.id !== id));
+    setTotalPeople((prev) => Math.max(prev - 1, 0)); // Decrement totalPeople but not below 0
   };
 
   const handleChange = (id: number, field: keyof InputGroup, value: string) => {
@@ -36,9 +55,8 @@ export function AddPeopleForm() {
 
   function bookHotel() {
     console.log("Booked");
+    console.log({ inputGroups });
   }
-
-  console.log({ inputGroups });
 
   return (
     <div className={styles.container}>
